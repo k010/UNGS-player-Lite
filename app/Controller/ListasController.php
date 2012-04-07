@@ -4,10 +4,9 @@ App::uses('AppController', 'Controller');
 class ListasController extends AppController {
     
     public function index() {
-        $this->Lista->recursive = 0;
-        $this->set('listas', $this->paginate());
- 
-        
+        $this->Lista->recursive = -1;
+        $userId = $this->Session->read('Auth.User.id');
+        $this->set('listas', $this->paginate('Lista', array('Lista.user_id' => $userId)));
     }
 
     public function play() {
@@ -54,15 +53,18 @@ class ListasController extends AppController {
             }else{
                 $this->Session->setFlash(__(Configure::read('Mensaje.validacion')));
             }
-        }        
+        }  
+        
+        $userId = $this->Session->read('Auth.User.id');
+        $this->set('userId', $userId);
+        
     }
         
     public function view($id = null) {
-        $condicion = array('Lista.id' => $id);
-        $lista = $this->Lista->find('first', array('conditions' => $condicion));
-        
+        $userId = $this->Session->read('Auth.User.id');
+        $condicion = array('Lista.id' => $id, 'Lista.user_id' => $userId);
+        $lista = $this->Lista->find('first', array('conditions' => $condicion, 'recursive' => -1));
         $this->set('lista', $lista);
-       
     }
         
     public function edit($id = null) {
@@ -80,7 +82,8 @@ class ListasController extends AppController {
                 $this->Session->setFlash(__(Configure::read('Mensaje.validacion')), 'flash_info');
             }
         } else {
-            $condicion = array('Lista.id' => $id);
+            $userId = $this->Session->read('Auth.User.id');
+            $condicion = array('Lista.id' => $id, 'Lista.user_id' => $userId);
             $lista = $this->Lista->find('first',array('conditions' => $condicion, 'recursive' => -1));
             $this->request->data = $lista;
         }

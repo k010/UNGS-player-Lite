@@ -31,7 +31,7 @@ class Lista extends AppModel {
 		),
 	);
 
-        
+        public $belongsTo = 'User';
 	public $hasAndBelongsToMany = array(
 		'Song' => array(
 			'className' => 'Song',

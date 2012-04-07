@@ -2,7 +2,7 @@
 App::uses('AuthComponent', 'Controller/Component');
 class User extends AppModel {
         public $name = 'User';
-	//public $displayField = 'username';
+	public $displayField = 'username';
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
@@ -60,6 +60,8 @@ class User extends AppModel {
 			),
 		), 
 	);
+    
+    public $hasMany = 'Lista';    
         
         
     public function beforeSave() {
