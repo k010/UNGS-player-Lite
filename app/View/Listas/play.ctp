@@ -60,17 +60,12 @@
 
 
 <script>
-
-    
-    
-    
    function cargarTapa(obj, activo){
       if(activo && obj != null){
             $('#tapaDisco').html('<img id="album_cover" width="360px" height="268px" src="'+$('#'+obj._data.oLI.id+' > div[id=tapa]').text()+'">');
             $("#album_cover").error(function () { 
                 $('#tapaDisco').html('<?php echo $this->Html->image('cd.png', array('id' => 'album_cover'))?>');
                 });
-
       } else {
           $('#tapaDisco').html('<?php echo $this->Html->image('cd.png', array('id' => 'album_cover'))?>');
       }
@@ -92,5 +87,4 @@
       }
   
   } 
-   
 </script>

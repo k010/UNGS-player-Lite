@@ -17,11 +17,12 @@ class Lista extends AppModel {
  *
  * @var array
  */
+
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'el campo no puede ser vacio',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

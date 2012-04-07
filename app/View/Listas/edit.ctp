@@ -1,23 +1,18 @@
-<div class="listas form">
-<?php echo $this->Form->create('Lista');?>
+<div class="row">
+    <div class="span12">
+        <div class="well">
+        <?php echo $this->Form->create('Lista', array('class' => 'form-horizontal'));?>
 	<fieldset>
-		<legend><?php echo __('Edit Lista'); ?></legend>
+		<legend><?php echo __('Editar lista'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('Song');
+                echo $this->Form->input('id');
+		echo $this->Form->input('name', array('label' => 'Nombre'));
+                echo '<br/>';
+		echo $this->Form->input('description', array('label' => 'Descripcion'));
+                echo '<br/><br/>';
+                echo $this->Form->submit('Modificar lista', array('class' => 'btn btn-primary btn-large', 'title' => 'Crear lista'));
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Lista.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Lista.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Listas'), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Songs'), array('controller' => 'songs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Song'), array('controller' => 'songs', 'action' => 'add')); ?> </li>
-	</ul>
+	</fieldset>                
+        </div>        
+    </div>
 </div>

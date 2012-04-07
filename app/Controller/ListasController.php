@@ -2,11 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class ListasController extends AppController {
-
-        //public $paginate = array(
-        //'limit' => 1
-        //);
-    
     
     public function index() {
         $this->Lista->recursive = 0;
@@ -60,16 +55,11 @@ class ListasController extends AppController {
                 $this->Session->setFlash(__(Configure::read('Mensaje.validacion')));
             }
         }        
-        
-       $songs = $this->Lista->Song->find('list');
-       $this->set(compact('songs'));        
-        //pr($this->request->data);
-        
     }
         
     public function view($id = null) {
         $condicion = array('Lista.id' => $id);
-        $lista = $this->Lista->find('first', $condicion);
+        $lista = $this->Lista->find('first', array('conditions' => $condicion));
         
         $this->set('lista', $lista);
        
@@ -77,13 +67,40 @@ class ListasController extends AppController {
         
     public function edit($id = null) {
         $this->Lista->id = $id;
-        
-       $songs = $this->Lista->Song->find('list');
-       $this->set(compact('songs'));        
-        pr($this->request->data);        
+        if (!$this->Lista->exists()) {
+            throw new NotFoundException(__(Configure::read('Mensaje.error')), 'flash_error');
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            pr($this->request->data);
+            
+            if ($this->Lista->save($this->request->data)) {
+                $this->Session->setFlash(__(Configure::read('Mensaje.ok')), 'flash_ok');
+                $this->redirect(array('controller' => 'listas', 'action' => 'index'));
+            } else {
+                $this->Session->setFlash(__(Configure::read('Mensaje.validacion')), 'flash_info');
+            }
+        } else {
+            $condicion = array('Lista.id' => $id);
+            $lista = $this->Lista->find('first',array('conditions' => $condicion, 'recursive' => -1));
+            $this->request->data = $lista;
+        }
     }
         
     public function delete($id = null) {
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        $this->Lista->id = $id;
+        if (!$this->Lista->exists()) {
+            throw new NotFoundException(__('Lista invalida'), 'flash_error');
+        }
+        if ($this->Lista->delete()) {
+            $this->Session->setFlash(__('eliminado OK'), 'flash_ok');
+            $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash(__(Configure::read('Mensaje.validacion')), 'flash_info');
+        $this->redirect(array('action' => 'index'));        
+        
     } 
     
 }
