@@ -40,6 +40,7 @@ class AppController extends Controller {
                 'userModel' => 'User' 
             )
         ),
+            'authError' => "Acceso denegado, primero debes hacer login",
             'loginAction' => array('controller' => 'users','action' => 'login','plugin' => null),
             'loginRedirect' => array('controller' => 'home', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),

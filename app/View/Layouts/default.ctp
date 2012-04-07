@@ -114,9 +114,6 @@ $(document).ready(function(){
                             </ul>
                         </li>
                     </ul>                    
-  
-           
-                    
                     
                     
                 </div>            
@@ -126,9 +123,6 @@ $(document).ready(function(){
             <div id="header">
             </div>
             <div id="content">
-                
-                
-                
                 <?php echo $this->Session->flash(); ?>
 		<?php echo $this->fetch('content'); ?>
             </div>
