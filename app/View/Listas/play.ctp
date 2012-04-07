@@ -33,7 +33,7 @@
         <ul class="thumbnails">
             <li class="span4">
                 <div class="thumbnail" id="tapaDisco">
-                    <img alt="" src="http://placehold.it/360x268"/>
+                    <?php echo $this->Html->image('cd.png', array('id' => 'album_cover'))?>
                 </div>
                     <br/>
                  <div class="alert alert-info" id="title" style="display:none;"></div>
@@ -60,24 +60,37 @@
 
 
 <script>
-   function cargarTapa(obj){
-      console.log(obj);
-     
-     $('#tapaDisco').html('<img alt="" width="360px" height="268px" src="'+$('#'+obj._data.oLI.id+' > div[id=tapa]').text()+'">');
-     
-     setTimeout(function() {
-         var album = obj.id3.TALB;
-         var artista = obj.id3.TPE1;
-         var tema = obj.id3.TIT2;
-         var genero = obj.id3.TCON;
-         var anio = obj.id3.TYER;
-            $('#title').show();
-            $('#title').html('<h3 align="center">.:  Info Extra  :.</h3><p align="center"><b>Estas escuchando </b>'+artista+'<br><b>El tema </b>'+tema+'<br><b>Del disco </b>'+album+'<br><b>Genero </b>'+genero+'<br><b>Año del disco </b>'+anio+'</p>');     
-     },3000);
-            
-            
+
+    
+    
+    
+   function cargarTapa(obj, activo){
+      if(activo && obj != null){
+            $('#tapaDisco').html('<img id="album_cover" width="360px" height="268px" src="'+$('#'+obj._data.oLI.id+' > div[id=tapa]').text()+'">');
+            $("#album_cover").error(function () { 
+                $('#tapaDisco').html('<?php echo $this->Html->image('cd.png', array('id' => 'album_cover'))?>');
+                });
+
+      } else {
+          $('#tapaDisco').html('<?php echo $this->Html->image('cd.png', array('id' => 'album_cover'))?>');
+      }
    }
    
-   
+  function extraInfo(obj, activo){
+      if(activo && obj != null){
+            setTimeout(function() {
+                var album = obj.id3.TALB;
+                var artista = obj.id3.TPE1;
+                var tema = obj.id3.TIT2;
+                var genero = obj.id3.TCON;
+                var anio = obj.id3.TYER;
+                    $('#title').html('<h3 align="center">.:  Info Extra  :.</h3><p align="center"><b>Estas escuchando </b>'+artista+'<br><b>El tema </b>'+tema+'<br><b>Del disco </b>'+album+'<br><b>Genero </b>'+genero+'<br><b>Año del disco </b>'+anio+'</p>');
+                    $('#title').show();
+            },3000);
+      } else {
+            $('#title').hide();
+      }
+  
+  } 
    
 </script>

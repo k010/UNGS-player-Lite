@@ -331,12 +331,14 @@ function PagePlayer() {
     // handlers for sound events as they're started/stopped/played
 
     play: function() {
-      cargarTapa(this);        
+      // envia datos a la vista play  
+      cargarTapa(this, true);
+      extraInfo(this, true);
+      
       pl.removeClass(this._data.oLI,this._data.className);
       this._data.className = pl.css.sPlaying;
       pl.addClass(this._data.oLI,this._data.className);
       self.setPageTitle(this._data.originalTitle);
-      
       
     },
 
@@ -374,15 +376,13 @@ function PagePlayer() {
     },
 
     finish: function() {
+      // elimina el texto de extra info
+      cargarTapa(null, false)
+      extraInfo(null, false);
+      
       pl.removeClass(this._data.oLI,this._data.className);
-      //this._data.className = pl.css.sDefault;
-      //pl.removeClass(this._data.oLI,this._data.className);
-      //alert(this._data.className);
-      
-      
       this._data.className = '';
       this._data.oPosition.style.width = '0px';
-      //document.getElementById('datosDelPlayer').style.display = none;
       
       // play next if applicable
       if (self.config.playNext) {
