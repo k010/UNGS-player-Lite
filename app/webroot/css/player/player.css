@@ -1,0 +1,125 @@
+li.player_play {
+    background-color: #BCE8F1;
+    border-color: #3A87AD;
+    color: #3A87AD;    
+    border: 1px solid #3A87AD;
+    border-radius: 4px 4px 4px 4px;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+li.player_load .barra_progreso {
+    background-color:#000;    
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:0.5em;
+}
+
+li.player_pause {
+    background-color: #999;
+    border-color: #BCE8F1;
+    color: #000;    
+    border: 1px solid #555;
+    border-radius: 4px 4px 4px 4px;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+li.player_play .player_def {
+    background-color: #FFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+li.player_pause .player_def {
+    background-color: #F5F5F5;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+li .timing-data {
+    display:none;
+}
+
+li.player_play .timing .timing-data {
+    text-align: right;
+    display:block;
+    background-color: #DFF0D8;
+    border: 1px solid #3A87AD;
+    border-radius: 4px 4px 4px 4px;
+    color: #468847;
+    margin-bottom: 8px;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+li.player_pause .timing .timing-data{
+    text-align: right;
+    text-decoration:blink;
+    display:block;
+    background-color: #DDD;
+    border: 1px solid #555;
+    border-radius: 4px 4px 4px 4px;
+    color: #000;
+    margin-bottom: 8px;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);    
+}
+
+
+
+li.player_pause .barra_progreso {
+    background-color: #F7F7F7;
+    background-image: -moz-linear-gradient(center top , #F5F5F5, #F9F9F9);
+    background-repeat: repeat-x;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    height: 18px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+li.player_pause .barra_progreso .bar {
+    -moz-box-sizing: border-box;
+    -moz-transition: width 0.6s ease 0s;
+    background-color: #999999;
+    background-image: -moz-linear-gradient(center top , #999, #555);
+    background-repeat: repeat-x;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+    color: #FFFFFF;
+    font-size: 12px;
+    height: 18px;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    width: 0;
+}    
+
+
+li.player_play .barra_progreso {
+    background-color: #F7F7F7;
+    background-image: -moz-linear-gradient(center top , #F5F5F5, #F9F9F9);
+    background-repeat: repeat-x;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    height: 18px;
+    margin-bottom: 8px;
+    margin-top: 8px;    
+    overflow: hidden;
+}
+li.player_play .barra_progreso .bar {
+    -moz-box-sizing: border-box;
+    -moz-transition: width 0.6s ease 0s;
+    background-color: #0E90D2;
+    background-image: -moz-linear-gradient(center top , #149BDF, #0480BE);
+    background-repeat: repeat-x;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+    color: #FFFFFF;
+    font-size: 12px;
+    height: 18px;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    width: 0;
+}
