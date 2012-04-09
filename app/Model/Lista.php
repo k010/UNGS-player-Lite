@@ -17,7 +17,7 @@ class Lista extends AppModel {
  *
  * @var array
  */
-
+        var $actsAs = array('Containable');
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -110,5 +110,33 @@ class Lista extends AppModel {
             
             return $tmp;
         }
+        
+        
+        public function getSongsList($data = null){
+            
+            if($data){
+                $conditions = array('Lista.id' => $data['Listas']['userlist']);
+                $listado = $this->find('first', array(
+                            'conditions' => $conditions,
+                            'fields' => array('Lista.id','Lista.name'),
+                            'contain' => array(
+                                'Song' => array(
+                                    'fields' => array('Song.id', 'Song.name'),
+                                )
+                            ),
+                            
+                    ));
+
+                
+                debug($listado);
+                foreach ($listado['Song'] as $value) {
+                    $tmp['Song'][] = $value['id'];
+                }
+
+                return $tmp;
+            }
+        }
+        
+        
         
 }

@@ -44,6 +44,26 @@ class Song extends AppModel {
             }
         }        
         
+
+	public $hasAndBelongsToMany = array(
+		'Lista' => array(
+			'className' => 'Lista',
+			'joinTable' => 'listas_songs',
+			'foreignKey' => 'song_id',
+			'associationForeignKey' => 'lista_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+	);        
+        
+        
         
        
         public function isMusicLoaded(){

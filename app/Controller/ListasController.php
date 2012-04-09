@@ -11,16 +11,23 @@ class ListasController extends AppController {
 
     public function play() {
         //$this->Session->setFlash('Something custom!', 'flash_custom');
-        
+        /*
         if(!empty($this->request->data)){
+            debug($this->request->data);
             $listado = $this->Lista->setTmpList($this->request->data);
             //$this->Session->setFlash(__('Lista actualizada'), 'flash_ok');
         } else {
             $listado = $this->Lista->getTmpList();
             //$this->Session->setFlash(__('Lista anterior'), 'flash_info'); 
         }
+        */
+        
+          // arreglar este bug
+          $listado = $this->Lista->getSongsList($this->request->data);
             
          // busca los datos    
+        
+        
          $datos = $this->Lista->Song->find('all', array(
               'fields' => array('name'),
               'conditions' => array('Song.id' => $listado['Song'])
@@ -33,7 +40,7 @@ class ListasController extends AppController {
          } else {
              $this->Session->setFlash(__('No se pudo reproducir la musica')); 
          }
-         
+        
             
             
     }

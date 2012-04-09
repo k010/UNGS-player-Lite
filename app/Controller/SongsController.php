@@ -10,7 +10,13 @@ class SongsController extends AppController {
     public function index() {
         $aux = $this->Song->find('all');
         $listado = $this->Song->setInfoSong($aux);
-        $this->set('songs', $listado);
+        
+        $userId = $this->Session->read('Auth.User.id');
+        $condicion = array('User.id' => $userId);
+        $userList = $this->Song->Lista->find('list', array('conditions' => $condicion, 'recursive' => 0));
+        //debug($userList);
+        
+        $this->set(array('songs' => $listado, 'userList' => $userList));
     }
                 
     public function add() {

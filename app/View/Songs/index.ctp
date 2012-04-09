@@ -18,7 +18,12 @@
             <div class="well form-search">
                 <span class="help-inline">Busqueda Rapida:</span>
                 <input type="text" id="quickfind"/>
-                <a class="btn btn-danger" id="cleanfilters" href="#">Limpiar Filtros</a>                
+                <a class="btn btn-danger" id="cleanfilters" href="#">Limpiar Filtros</a>
+                
+                <span class="help-inline">Listas</span>
+                <?php echo $this->Form->select('userlist', $userList); ?>
+                
+                
             </div>
         
         <table cellspacing="0" border="0" class="table table-striped table-bordered table-condensed" id="listado" width="100%">
