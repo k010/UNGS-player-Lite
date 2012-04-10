@@ -16,6 +16,20 @@ class Song extends AppModel {
 	public $displayField = 'name';
         var $actsAs = array('Containable');
 
+	public $validate = array(
+		'Lista.id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'el campo no puede ser vacio',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);  
+        
+        
         
         public function setInfoSong($datos = null){
             if($datos){
@@ -44,7 +58,7 @@ class Song extends AppModel {
             }
         }        
         
-
+        
 	public $hasAndBelongsToMany = array(
 		'Lista' => array(
 			'className' => 'Lista',

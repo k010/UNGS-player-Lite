@@ -32,6 +32,7 @@ class Lista extends AppModel {
 	);
 
         public $belongsTo = 'User';
+        
 	public $hasAndBelongsToMany = array(
 		'Song' => array(
 			'className' => 'Song',
@@ -72,71 +73,32 @@ class Lista extends AppModel {
                 return false;
             }
         }
-        
-        
-        
-        public function setTmpList($data){
-            // busca la lista tmp
-            $conditions = array('Lista.name' => 'tmp');
-            $listado = $this->find('first', array('conditions' => $conditions));
-
-            // carga los temas a la lista tmp
-            $tmp = array();
-            $tmp['Lista'] = $listado['Lista'];
-            $tmp['Song'] = $data;
-            unset($tmp['Lista']['modified']);
-            unset($tmp['Lista']['created']);
-            
-            //debug($tmp);
-            
-            if($this->save($tmp)){
-                return $result = $tmp['Song'];
-            } else {
-                return false;
+         
+        public function updateSongsList($data = null){
+            if($data){
+                 $tmp['Song'] = $data['Song'];                
+                    if($this->save($data)){
+                        return $tmp;
+                    } else {
+                        debug('NO guardo');
+                        return false;
+                    }                 
             }
-            
         }
-
-        public function getTmpList(){
-            $conditions = array('Lista.name' => 'tmp');
-            $listado = $this->find('first', array(
-                        'conditions' => $conditions,
-                        'fields' => array('id','name'),
-                ));
-            
-            foreach ($listado['Song'] as $value) {
-                $tmp['Song'][] = $value['id'];
-            }
-            
-            return $tmp;
-        }
-        
         
         public function getSongsList($data = null){
-            
             if($data){
-                $conditions = array('Lista.id' => $data['Listas']['userlist']);
+                $conditions = array('Lista.id' => $data['Lista']['id']);
                 $listado = $this->find('first', array(
                             'conditions' => $conditions,
                             'fields' => array('Lista.id','Lista.name'),
-                            'contain' => array(
-                                'Song' => array(
-                                    'fields' => array('Song.id', 'Song.name'),
-                                )
-                            ),
-                            
+                            'contain' => array('Song.id','Song.name')
                     ));
-
-                
-                debug($listado);
                 foreach ($listado['Song'] as $value) {
                     $tmp['Song'][] = $value['id'];
                 }
-
                 return $tmp;
             }
         }
-        
-        
         
 }
