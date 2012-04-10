@@ -87,8 +87,12 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__(Configure::read('Mensaje.validacion')), 'flash_info');
             }
         } else {
-            $this->request->data = $this->User->read(null, $id);
+            
+            $conditions = array('User.id' => $id);
+            $user = $this->User->find('first', array('conditions' => $conditions));
+            $this->request->data = $user;            
             unset($this->request->data['User']['password']);
+            
         }
 
         $photo_name = $this->User->find();
