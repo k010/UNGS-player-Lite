@@ -25,7 +25,7 @@
         </fieldset>
         </div>
         <div class="span6">
-            <h3>Registrate para poder disfrutar de miles de canciones</h3><br>
+            <h3>Registrate, sube tus canciones y disfruta de un reproductor MP3 difrente</h3><br>
             <p>UNGS-player es un proyecto para la Universidad Gral. Sarmiento, como proposito de entrega del TP individual en la materia de Construccion del Software, dictada en la sede de San Fdo. durante el primer semestre del 2012</p>
             <p>El proyecto esta basado en <a href="http://cakephp.org/">Cakephp</a> y <a href="http://www.schillmania.com/projects/soundmanager2/">Soundmaner2</a></p>
             <p align="right">Realizado por Jesús Alonso</p>

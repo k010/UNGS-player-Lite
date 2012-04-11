@@ -34,10 +34,22 @@ class UsersController extends AppController {
         if(!empty($this->request->data)){
             $this->User->set($this->request->data);
             if($this->User->validates()){
-                pr($this->request->data);
                 if($this->User->save($this->request->data)){
-                    $this->Session->setFlash(__(Configure::read('Mensaje.ok')), 'flash_ok'); 
-                    $this->redirect(array('action' => 'index'));
+                    // crea una lista temporal una vez que se registro
+                    $idUser = $this->User->getLastInsertID();
+                    $lista = array(
+                        'Lista' => array(
+                            'user_id' => $idUser,
+                            'name' => 'tmp',
+                            'description' => 'lista tmp',
+                            'status' => 1
+                        )
+                    );
+                    if($this->User->Lista->save($lista)){
+                        $this->Session->setFlash(__(Configure::read('Mensaje.ok')), 'flash_ok');
+                        $this->redirect(array('action' => 'index'));                        
+                    }
+
                 }  else {
                     $this->Session->setFlash(__(Configure::read('Mensaje.error')), 'flash_error');
                     }

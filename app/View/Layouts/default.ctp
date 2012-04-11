@@ -77,8 +77,7 @@ $(document).ready(function(){
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo $this->Html->url(array("controller" => "listas", "action" => "play"));?>"><i class="icon-play-circle"></i> Ultima reproduccion</a></li>
-                                <li><a href="<?php echo $this->Html->url(array("controller" => "songs", "action" => "index"));?>"><i class="icon-music"></i> Buscar musica</a></li>                                
+                                <li><a href="<?php echo $this->Html->url(array("controller" => "songs", "action" => "index"));?>"><i class="icon-music"></i> Escuchar musica</a></li>                                
                                 <li class="divider"></li>
                                 <li><a href="<?php echo $this->Html->url(array("controller" => "songs", "action" => "add"));?>"><i class="icon-plus-sign"></i> Scanear nueva musica</a></li>
                             </ul>
@@ -90,7 +89,6 @@ $(document).ready(function(){
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo $this->Html->url(array("controller" => "listas", "action" => "view",1));?>"><i class="icon-list"></i> Lista temporal</a></li>
                                 <li><a href="<?php echo $this->Html->url(array("controller" => "listas", "action" => "index"));?>"><i class="icon-search"></i> Buscar listas</a></li>                                
                                 <li class="divider"></li>
                                 <li><a href="<?php echo $this->Html->url(array("controller" => "listas", "action" => "add"));?>"><i class="icon-plus-sign"></i> Agregar nueva lista</a></li>

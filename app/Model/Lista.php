@@ -1,22 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * List Model
- *
- * @property Song $Song
- */
 class Lista extends AppModel {
-/**
- * Display field
- *
- * @var string
- */
 	public $displayField = 'name';
-/**
- * Validation rules
- *
- * @var array
- */
         var $actsAs = array('Containable');
 	public $validate = array(
 		'name' => array(
@@ -32,7 +17,6 @@ class Lista extends AppModel {
 	);
 
         public $belongsTo = 'User';
-        
 	public $hasAndBelongsToMany = array(
 		'Song' => array(
 			'className' => 'Song',
@@ -76,15 +60,39 @@ class Lista extends AppModel {
          
         public function updateSongsList($data = null){
             if($data){
-                 $tmp['Song'] = $data['Song'];                
+                 $tmp['Song'] = $data['Song']; 
+                 debug($data);
                     if($this->save($data)){
                         return $tmp;
                     } else {
                         debug('NO guardo');
                         return false;
-                    }                 
+                    } 
             }
         }
+        
+        public function updateSongsListTmp($data = null, $user = null){
+            $c = array('Lista.name' => 'tmp', 'user_id' => $user);
+            $buscaTmp = $this->find('first', array(
+                    'conditions' => $c,
+                    'recursive' => -1,
+                    'fields' => array('id')
+            ));            
+            
+            $setTmp = array(
+                'Lista' => array('id' => $buscaTmp['Lista']['id']),
+                'Song' => $data
+                
+            );
+            
+            $tmp['Song'] = $setTmp['Song'];
+            if($this->save($setTmp)){
+                return $tmp;
+            } else {
+                debug('NO guardo');
+                return false;
+            }                 
+        }        
         
         public function getSongsList($data = null){
             if($data){
