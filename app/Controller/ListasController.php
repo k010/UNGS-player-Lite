@@ -2,7 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class ListasController extends AppController {
-    
     public function index() {
         $this->Lista->recursive = -1;
         $userId = $this->Session->read('Auth.User.id');

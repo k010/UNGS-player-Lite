@@ -1,6 +1,5 @@
 <div class="row">
     <legend><?php echo __('Perfil'); ?></legend>
-
         <ul class="thumbnails">
             <li class="span4">
                 <div class="thumbnail">
@@ -33,5 +32,4 @@
                 </div>
             </li>
         </ul>      
-
 </div>
