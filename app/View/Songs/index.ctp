@@ -24,7 +24,6 @@
                     <?php echo $this->Form->select('Lista.id', $userList, array('empty' => 'Seleccione una lista')); ?>
                 </div>
             </div>
-        
         <table cellspacing="0" border="0" class="table table-striped table-bordered table-condensed" id="listado" width="100%">
         <thead>
             <tr>
@@ -36,6 +35,7 @@
             </tr>
         </thead>
         <tbody>
+
 	<?php foreach ($songs as $song): ?>
         <?php 
             $idAlbum = 'album_' . str_replace(' ', '', $song['album']); 
@@ -53,7 +53,7 @@
         <tfoot>
         </tfoot>
 	</table>
-
+        
         </fieldset>
                   
 </div>
@@ -78,6 +78,9 @@
             $(this).children().append('<i class="icon-play icon-white"></i>');            
         }
     });
+    
+    
+    
   });
     
 </script>

@@ -61,7 +61,7 @@ class Lista extends AppModel {
         public function updateSongsList($data = null){
             if($data){
                  $tmp['Song'] = $data['Song']; 
-                 debug($data);
+                 //debug($data);
                     if($this->save($data)){
                         return $tmp;
                     } else {
