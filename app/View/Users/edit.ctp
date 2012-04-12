@@ -1,10 +1,13 @@
 <div class="row">
     <div class="span8">
-<?php echo $this->Form->create('User', array('type' => 'file','class' => 'form-horizontal well')); ?>    
+        <?php echo $this->Form->create('User', array('type' => 'file', 
+            'class' => 'form-horizontal well',
+            'inputDefaults' => array(
+                            'div' => array('class' => 'control-group'),
+                        )
+            ));?>    
 	<fieldset>
 		<legend><?php echo __('Editar Perfil'); ?></legend>
-                
-                
                 <ul class="thumbnails">
                     <li class="span2">
                         <div class="thumbnail">
@@ -15,12 +18,11 @@
                         </div>
                     </li>
                 </ul>                  
-                
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
-		echo $this->Form->input('password');
+		echo $this->Form->input('password', array('error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))));
 		echo $this->Form->hidden('photo_name', array('value' => $photo_name));
                 echo $this->Form->input('User.photo', array('between'=>'<br />','type'=>'file', 'label' => 'Foto'));
                 

@@ -45,7 +45,7 @@
                     <td><?php echo h($song['band']); ?>&nbsp;</td>
                     <td ><?php echo h($song['album']); ?>&nbsp;</td>
                     <td><span class="badge badge-info"><?php echo h($song['song_number']); ?>&nbsp;</span></td>
-                    <td title="PLAY" class="" id="<?php echo $song['song_id'] ?>"><span class=""><?php echo h($song['song']); ?>&nbsp;</span></td>                     
+                    <td title="PLAY" class="" style="cursor:pointer" id="<?php echo $song['song_id'] ?>"><span class=""><?php echo h($song['song']); ?>&nbsp;</span></td>                     
                     
             </tr>
         <?php endforeach; ?>
@@ -61,27 +61,17 @@
 
 <script>   
   $(document).ready(function(){
-      //$('#container').css('background-image','img/bg.jepg');
-      //$('#container').css("background:url('../img/bg2.jpg')");
-      
-      
     var options = {
         additionalFilterTriggers: [$('#quickfind')],
         clearFiltersControls: [$('#cleanfilters')],
         filterDelay: 100
     };      
     $('#listado').tableFilter(options);
-
     $("td[title=PLAY]").click(function(){
-        //alert(this.id + $(this).html());
-        $(this).children().toggleClass( "label label-info", 10 );
-        //return false;
-        
-        if($(this).children().hasClass("label label-info")){
-            
+        $(this).children().toggleClass( "badge badge-info", 10 );
+        if($(this).children().hasClass("badge badge-info")){
             $(this).children().children().remove();
             $('div[id=song_id_'+this.id+']').remove();
-            
         } else {
             var sn = '<div id="song_id_'+this.id+'" style="display:none"><label> '+ $(this).html() +' <input type="checkbox" id='+this.id+' value='+ this.id +' name="data[Song][]" checked> </label></div>';
             $('#ListasPlayForm').append(sn);

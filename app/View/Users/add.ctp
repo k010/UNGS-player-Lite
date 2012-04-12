@@ -1,7 +1,11 @@
 <div class="row">
     <div class="span12">
         <div class="well">
-            <?php echo $this->Form->create('User');?>
+            <?php echo $this->Form->create('User', array('class' => 'form-horizontal well',
+                                            'inputDefaults' => array(
+                                            'div' => array('class' => 'control-group'),
+                                            )
+                                    ));?>
                     <fieldset>
                             <legend><?php echo __('Registrarse'); ?></legend>
                     <?php

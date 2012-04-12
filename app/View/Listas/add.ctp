@@ -1,7 +1,16 @@
 <div class="row">
     <div class="span12">
         <div class="well">
-        <?php echo $this->Form->create('Lista', array('class' => 'form-horizontal'));?>
+        <?php echo $this->Form->create('Lista', array(
+                        'class' => 'form',
+                        'inputDefaults' => array(
+                            'div' => array('class' => 'control-group'),
+                            'between' => '<div class="controls">',
+                            'after' => '</div>',
+                            'class' => '',
+                        )
+                   ));
+        ?>
             <fieldset>
                     <legend><?php echo __('Agregar lista'); ?></legend>
             <?php

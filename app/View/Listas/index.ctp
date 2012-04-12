@@ -6,42 +6,38 @@
             <table class="table table-striped table-bordered table-condensed">
             <tr>
                             <th><?php echo $this->Paginator->sort('id');?></th>
-                            <th><?php echo $this->Paginator->sort('name');?></th>
-                            <th><?php echo $this->Paginator->sort('description');?></th>
-                            <th><?php echo $this->Paginator->sort('created');?></th>
-                            <th><?php echo $this->Paginator->sort('modified');?></th>
-                            <th class="actions"><?php echo __('Actions');?></th>
+                            <th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
+                            <th><?php echo $this->Paginator->sort('description', 'Descripcion');?></th>
+                            <th class="actions"><?php echo __('Reproducir lista');?></th>                            
+                            <th class="actions"><?php echo __('Otras acciones');?></th>
+
             </tr>
-            <?php
-            foreach ($listas as $lista): ?>
+            <?php foreach ($listas as $lista): ?>
             <tr>
                     <td><?php echo h($lista['Lista']['id']); ?>&nbsp;</td>
                     <td><?php echo h($lista['Lista']['name']); ?>&nbsp;</td>
                     <td><?php echo h($lista['Lista']['description']); ?>&nbsp;</td>
-                    <td><?php echo h($lista['Lista']['created']); ?>&nbsp;</td>
-                    <td><?php echo h($lista['Lista']['modified']); ?>&nbsp;</td>
+                    <td>
+                           <?php echo $this->Form->create('Lista', array('action' => 'play', 'style' => 'margin:0px')); ?>
+                           <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $lista['Lista']['id'])); ?>
+                           <?php echo $this->Form->submit('Escuchar', array('class' => 'btn btn-success', 'title' => 'Escuchar')); ?>
+                    </td>
                     <td class="actions">
-                            <?php echo $this->Html->link(__('Ver'), array('action' => 'view', $lista['Lista']['id'])); ?>
-                            <?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $lista['Lista']['id'])); ?>
-                            <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $lista['Lista']['id']), null, __('Estas seguro que quieres eliminar # %s?', $lista['Lista']['id'])); ?>
+                            <?php echo $this->Html->link(__('Ver'), array('action' => 'view', $lista['Lista']['id']), array('class' => 'btn btn-info')); ?>
+                            <?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $lista['Lista']['id']), array('class' => 'btn btn-warning')); ?>
+                            <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $lista['Lista']['id']), array('class' => 'btn btn-danger'), null, __('Estas seguro que quieres eliminar # %s?', $lista['Lista']['id'])); ?>
                     </td>
             </tr>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
             </table>
-        
-        
-        <div class="well">  
-            <p>
-            <?php
-            echo $this->Paginator->counter(array(
-            'format' => __('Pagina {:page} de {:pages}, registros totales {:count}, desde {:start}, al {:end}')
-            ));
-            ?>	</p>
-        </div>
-        
-        
-        
-        
+            <div class="well">  
+                <p>
+                <?php
+                echo $this->Paginator->counter(array(
+                'format' => __('Pagina {:page} de {:pages}, registros totales {:count}, desde {:start}, al {:end}')
+                ));
+                ?>	</p>
+            </div>
             <div class="pagination pagination-centered">
                 <ul>
             <?php
