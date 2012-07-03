@@ -10,7 +10,7 @@
     soundManager.useHighPerformance = true; // keep flash on screen, boost performance
     soundManager.wmode = 'transparent'; // transparent SWF, if possible
     soundManager.useFastPolling = true; // increased JS callback frequency    
-    soundManager.url = '/ungs-player/files/player/';
+    soundManager.url = '/files/player/';
     var PP_CONFIG = {
     autoStart: false,      // begin playing first sound when page loads
     playNext: true,        // stop after one sound, or play through list until end

@@ -36,7 +36,7 @@ class User extends AppModel {
 				//'allowEmpty' => false,
 				//'required' => true,
 				//'last' => true, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
                 'psword' => array(
@@ -63,10 +63,11 @@ class User extends AppModel {
     
     public $hasMany = 'Lista';    
         
-        
     public function beforeSave() {
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+        } else {
+            unset($this->data[$this->alias]['password']);
         }
         return true;
     }

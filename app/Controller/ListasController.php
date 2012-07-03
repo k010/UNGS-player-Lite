@@ -77,7 +77,7 @@ class ListasController extends AppController {
             throw new NotFoundException(__(Configure::read('Mensaje.error')), 'flash_error');
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-            pr($this->request->data);
+            //pr($this->request->data);
             
             if ($this->Lista->save($this->request->data)) {
                 $this->Session->setFlash(__(Configure::read('Mensaje.ok')), 'flash_ok');

@@ -18,7 +18,24 @@ class SongsController extends AppController {
         
         $this->set(array('songs' => $listado, 'userList' => $userList));
     }
-                
+         
+    public function index2() {
+        $aux = $this->Song->find('all');
+        $listado = $this->Song->setInfoSong($aux);
+        
+        $conditions = array('Song.id', 'Song.name');
+        $listado2 = $this->Song->getAllSongs($this->Song->find('all', array('recursive' => -1, 'fields' => $conditions)));
+        
+        // listas del usuario
+        $userId = $this->Session->read('Auth.User.id');
+        $condicion = array('User.id' => $userId);
+        $userList = $this->Song->Lista->find('list', array('conditions' => $condicion, 'recursive' => 0));
+        //debug($userList);
+        
+        $this->set(array('songs' => $listado2, 'userList' => $userList));
+    }    
+    
+    
     public function add() {
         if($this->Song->isMusicLoaded()){
             $this->Session->setFlash(__('!!! Se ha encontrado nueva musica y ha actualizado correctamente !!!'), 'flash_info'); 

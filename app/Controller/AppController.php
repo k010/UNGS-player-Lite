@@ -8,12 +8,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       app.Controller
  * @since         CakePHP(tm) v 0.2.9
@@ -56,9 +56,8 @@ class AppController extends Controller {
     }
     
     public function isAuthorized($user) {
-        if (isset($user['rol']) && $user['rol'] === 'admin') {
-            return true; //Admin can access every action
-        }
-        return false; // The rest don't
-    }    
+         return $this->Auth->loggedIn();
+    }  
+
+
 }

@@ -1,29 +1,39 @@
 <?php
 class UsersController extends AppController {
     public function beforeFilter() {
-      parent::beforeFilter();
-          $this->Auth->allow('login', 'logout', 'add');          
-    }    
+        $this->Auth->allow('add');
+    }
+
+    public function isAuthorized($user) {
+      if ($this->request->action === 'index' || $this->request->action === 'delete') {
+        return $this->Auth->user('rol') === 'admin';
+      } elseif ($this->request->action === 'edit') {
+            if ($this->Auth->user('rol') === 'admin') {
+                return true;
+            } else {
+                return $this->Auth->user('id') === $this->params['pass'][0];
+            }
+      } else {
+        return true;
+      }
+    }
 
     function login() {
-        if(!empty($this->request->data)) {            
-            $this->User->set($this->request->data);
-            if($this->User->validates()) {
-               if ($this->Auth->login()) {
-                $this->redirect($this->Auth->redirect());
-               }else{
-                $this->Session->setFlash(__('Invalido username o password, Intente de nuevo'), 'flash_error');
-                } 
-            }
+      if ($this->Auth->loggedIn()) {
+        $this->redirect(array("controller" => "home"));
+      } 
+      if ($this->request->is('post') || $this->request->is('put')) {
+        if ($this->Auth->login()) {
+          $this->redirect($this->Auth->redirect());
+        } else {
+          $this->Session->setFlash(__('Invalid email or password, please try again'), 'flash_error');
         }
-        
-    }
+      }
+    }        
 
     function logout() {
         $this->redirect($this->Auth->logout());
     }    
-    
-    
     
     public function index() {
         $this->User->recursive = 0;

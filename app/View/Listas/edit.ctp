@@ -1,7 +1,11 @@
 <div class="row">
     <div class="span12">
         <div class="well">
-        <?php echo $this->Form->create('Lista', array('class' => 'form-horizontal'));?>
+        <?php echo $this->Form->create('Lista', array('class' => 'form-horizontal', 
+            'inputDefaults' => array(
+                            'div' => array('class' => 'control-group'),
+                        )
+            ));?>
 	<fieldset>
 		<legend><?php echo __('Editar lista'); ?></legend>
 	<?php

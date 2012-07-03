@@ -1,0 +1,15 @@
+/app/Config
+/app/tmp
+/lib/Cake/Console/Templates/skel/tmp/
+/plugins
+/vendors
+/build
+/dist
+.DS_Store
+/tags
+index.php
+build.xml
+build.properties
+/nbproject
+/app/webroot/files/Music
+/lib/cake/Test/

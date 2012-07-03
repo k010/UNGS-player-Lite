@@ -47,8 +47,10 @@ class Lista extends AppModel {
                         'band' => $info[0],
                         'album' => $info[1],
                         'song' => $info[2],
-                        'path' => "../" . APP_DIR . "/" . WEBROOT_DIR . "/files/Music/" . $lista . '.mp3',
-                        'cover' => "../" . APP_DIR . "/" . WEBROOT_DIR . "/files/Music/".$info[0]."/".$info[1]."/Tapa.jpg"
+                        //'path' => "../" . APP_DIR . "/" . WEBROOT_DIR . "/files/Music/" . $lista . '.mp3',
+                        //'cover' => "../" . APP_DIR . "/" . WEBROOT_DIR . "/files/Music/".$info[0]."/".$info[1]."/Tapa.jpg"
+                        'path' => "/files/Music/" . $lista . '.mp3',
+                        'cover' => "/files/Music/".$info[0]."/".$info[1]."/Tapa.jpg"
                     );
 
                 }                

@@ -58,6 +58,53 @@ class Song extends AppModel {
             }
         }        
         
+        public function getAllSongs($datos = null){
+            $bandas = array();
+            
+            
+            $tema = $datos[0]['Song']['name'];
+            $tema = explode('\\', $tema);
+            pr($tema);
+            
+
+            
+            
+            //$band = new Object();
+            //$band->name = array();
+            //$band->album = array();
+            //$band->Artist = array();
+            
+            //$band->name[] = "Metallica";
+            //$band->name[] = "Iron Maiden";
+            
+            $musica = array();
+            //pr($band->name);
+            
+            foreach ($datos as $value){
+                $song_id = $value['Song']['id'];
+                $song = explode('\\', $value['Song']['name']);
+                
+                
+                if(!in_array($song[0], $musica)){
+                    echo "No existe: $song[0] <br>";
+                    
+                    $musica[] = $song[0];
+                    
+                    $musica[] = array(
+                        '{$song[0]}'
+                    );
+                    
+                } else {
+                    //echo "<b>Existe Artista: $song[0]</b><br>";
+                }
+            }
+            
+            pr($musica);
+            
+            //return $resultado;
+        }
+        
+        
         
 	public $hasAndBelongsToMany = array(
 		'Lista' => array(

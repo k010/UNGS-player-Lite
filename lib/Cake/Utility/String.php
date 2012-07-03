@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Utility
  * @since         CakePHP(tm) v 1.2.0.5551
@@ -40,13 +40,13 @@ class String {
 					'::', str_repeat(':0000', 8 - substr_count($node, ':')) . ':', $node
 				);
 			}
-			$node = explode(':', $node) ;
-			$ipv6 = '' ;
+			$node = explode(':', $node);
+			$ipSix = '';
 
 			foreach ($node as $id) {
-				$ipv6 .= str_pad(base_convert($id, 16, 2), 16, 0, STR_PAD_LEFT);
+				$ipSix .= str_pad(base_convert($id, 16, 2), 16, 0, STR_PAD_LEFT);
 			}
-			$node =  base_convert($ipv6, 2, 10);
+			$node = base_convert($ipSix, 2, 10);
 
 			if (strlen($node) < 38) {
 				$node = null;
@@ -81,7 +81,7 @@ class String {
 
 		if (function_exists('hphp_get_thread_id')) {
 			$pid = hphp_get_thread_id();
-		} else if (function_exists('zend_thread_id')) {
+		} elseif (function_exists('zend_thread_id')) {
 			$pid = zend_thread_id();
 		} else {
 			$pid = getmypid();
@@ -330,7 +330,7 @@ class String {
  * - `indentAt` 0 based index to start indenting at. Defaults to 0.
  *
  * @param string $text Text the text to format.
- * @param mixed $options Array of options to use, or an integer to wrap the text to.
+ * @param array|integer $options Array of options to use, or an integer to wrap the text to.
  * @return string Formatted text.
  */
 	public static function wrap($text, $options = array()) {
@@ -361,6 +361,7 @@ class String {
  *
  * - `format` The piece of html with that the phrase will be highlighted
  * - `html` If true, will ignore any HTML tags, ensuring that only the correct text is highlighted
+ * - `regex` a custom regex rule that is ued to match words, default is '|$tag|iu'
  *
  * @param string $text Text to search the phrase in
  * @param string $phrase The phrase that will be searched
@@ -375,7 +376,8 @@ class String {
 
 		$default = array(
 			'format' => '<span class="highlight">\1</span>',
-			'html' => false
+			'html' => false,
+			'regex' => "|%s|iu"
 		);
 		$options = array_merge($default, $options);
 		extract($options);
@@ -391,7 +393,7 @@ class String {
 				}
 
 				$with[] = (is_array($format)) ? $format[$key] : $format;
-				$replace[] = "|$segment|iu";
+				$replace[] = sprintf($options['regex'], $segment);
 			}
 
 			return preg_replace($replace, $with, $text);
@@ -401,7 +403,7 @@ class String {
 				$phrase = "(?![^<]+>)$phrase(?![^<]+>)";
 			}
 
-			return preg_replace("|$phrase|iu", $format, $text);
+			return preg_replace(sprintf($options['regex'], $phrase), $format, $text);
 		}
 	}
 
@@ -458,7 +460,7 @@ class String {
 				if (!preg_match('/img|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param/s', $tag[2])) {
 					if (preg_match('/<[\w]+[^>]*>/s', $tag[0])) {
 						array_unshift($openTags, $tag[2]);
-					} else if (preg_match('/<\/([\w]+)[^>]*>/s', $tag[0], $closeTag)) {
+					} elseif (preg_match('/<\/([\w]+)[^>]*>/s', $tag[0], $closeTag)) {
 						$pos = array_search($closeTag[1], $openTags);
 						if ($pos !== false) {
 							array_splice($openTags, $pos, 1);
@@ -551,7 +553,7 @@ class String {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt
  */
 	public static function excerpt($text, $phrase, $radius = 100, $ending = '...') {
-		if (empty($text) or empty($phrase)) {
+		if (empty($text) || empty($phrase)) {
 			return self::truncate($text, $radius * 2, array('ending' => $ending));
 		}
 

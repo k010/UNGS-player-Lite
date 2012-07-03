@@ -22,6 +22,11 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
+                
+                if($this->Session->read('Auth.User.rol') == 'admin'){
+                    echo $this->Form->input('rol', array('type' => 'select', 'options' => array('admin' => 'Admin', 'user' => 'Usuario'), 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))));                    
+                }
+                
 		echo $this->Form->input('password', array('error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))));
 		echo $this->Form->hidden('photo_name', array('value' => $photo_name));
                 echo $this->Form->input('User.photo', array('between'=>'<br />','type'=>'file', 'label' => 'Foto'));
