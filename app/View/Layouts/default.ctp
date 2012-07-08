@@ -64,7 +64,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP ');
     <style type="text/css">
       body {
         padding-top: 60px;
-        padding-bottom: 40px;
+        padding-bottom: 60px;
       }
     </style>    
     <body>

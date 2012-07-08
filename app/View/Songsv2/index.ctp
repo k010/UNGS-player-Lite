@@ -24,22 +24,18 @@
                     <?php echo $this->Form->select('Lista.id', $userList, array('empty' => 'Seleccione una lista')); ?>
                 </div>
             </div>
-            
-            <!--
         <table cellspacing="0" border="0" class="table table-striped table-bordered table-condensed" id="listado" width="100%">
         <thead>
             <tr>
-                <th><?php //echo __('Banda');?></th>
-		<th><?php //echo __('Album');?></th>
-                <th><?php //echo __('Track');?></th>
-                <th><?php //echo __('Nombre');?></th>
+                <th><?php echo __('Banda');?></th>
+		<th><?php echo __('Album');?></th>
+                <th><?php echo __('Track');?></th>
+                <th><?php echo __('Nombre');?></th>
 
             </tr>
         </thead>
         <tbody>
-            -->
-            
-            <?php echo var_dump($songs); ?>
+
 	<?php foreach ($songs as $song): ?>
         <?php 
             $idAlbum = 'album_' . str_replace(' ', '', $song['album']); 
@@ -53,20 +49,17 @@
                     
             </tr>
         <?php endforeach; ?>
-            <!--
         </tbody>
         <tfoot>
         </tfoot>
 	</table>
-            -->
         
         </fieldset>
                   
 </div>
-        <?php //echo $this->Html->script('jquery/picnet.table.filter.min.js'); ?>
+        <?php echo $this->Html->script('jquery/picnet.table.filter.min.js'); ?>
 
 <script>   
-    /*
   $(document).ready(function(){
     var options = {
         additionalFilterTriggers: [$('#quickfind')],
@@ -89,7 +82,7 @@
     
     
   });
-    */
+    
 </script>
 
 

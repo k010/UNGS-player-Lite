@@ -1,7 +1,13 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target="#contenidoSuperior">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </a>
             <a class="brand" href="<?php echo $this->Html->url(array("controller" => "home", "action" => "index"));?>">UNGS-Player</a>            
+            <div class="nav-collapse" id="contenidoSuperior">
             <ul class="nav">
                 <!--<li class="active"><a href="#">Regular link</a></li>-->
                 <li class="dropdown" id="menu1">
@@ -49,8 +55,7 @@
                     </ul>
                 </li>
             </ul>                    
-
-
+            </div>             
         </div>            
     </div>                
 </div>    
